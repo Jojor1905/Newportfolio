@@ -206,7 +206,7 @@ section > .wrap{position:relative; z-index:1;}
   border:1.5px solid var(--cream-300); padding:12px 20px; border-radius:var(--radius-pill); font-weight:700; font-size:14.5px; box-shadow:var(--shadow-sm); color:var(--forest-600);
 }
 .pill .pill-logo{width:20px; height:20px; flex:0 0 20px; object-fit:contain; object-position:center;}
-.skills-cats{display:grid; grid-template-columns:repeat(2,1fr); gap:var(--sp-5); margin-top:var(--sp-7);}
+.skills-cats{display:flex; flex-direction:column; gap:var(--sp-5); margin-top:var(--sp-7);}
 .skill-cat h4{font-size:14px; text-transform:none; color:var(--ink-soft); font-weight:700; margin:0 0 var(--sp-3);}
 .bubble-menu{display:flex; flex-wrap:wrap; gap:10px;}
 .bubble{
@@ -217,7 +217,12 @@ section > .wrap{position:relative; z-index:1;}
 .bubble:nth-child(3n){background:var(--sky-100); border-color:var(--sky-300); color:var(--sky-700);}
 .bubble:nth-child(3n+1){background:var(--sage-100); border-color:var(--sage-300); color:var(--sage-700);}
 .bubble:hover{transform:scale(1.04); background:var(--cream-200); box-shadow:var(--shadow-sm);}
-@media (max-width:720px){ .skills-cats{grid-template-columns:1fr;} }
+.skills-cats .skill-cat{min-width:0;}
+.skills-cats .skill-marquee{margin-top:0;}
+.skills-cats .text-pill{justify-content:center;}
+.skills-cats .methods-cat .text-pill{background:var(--forest-50); border-color:var(--forest-200);}
+.skills-cats .work-cat .text-pill{background:var(--sky-50); border-color:var(--sky-200);}
+.skills-cats .text-pill:hover{transform:translateY(-2px); background:var(--cream-50); box-shadow:var(--shadow-sm);}
 
 /* =====================================================
    PROJECTS
@@ -317,6 +322,27 @@ section > .wrap{position:relative; z-index:1;}
 .activity-card .flip-front, .activity-card .flip-back{position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-sm);}
 .activity-card:hover .flip-front{box-shadow:var(--shadow-md);}
 .activity-card .flip-back{transform:rotateY(180deg); background:var(--cream-50); border:1.5px solid var(--cream-300); padding:var(--sp-4); display:flex; flex-direction:column; gap:10px; overflow-y:auto;}
+.activity-card .flip-front{background:var(--cream-50); border:1.5px solid var(--cream-300); padding:20px;}
+.activity-front{height:100%; display:flex; flex-direction:column; gap:14px;}
+.activity-header{flex:0 0 auto; padding:12px 42px 12px 14px; border-radius:var(--radius-md);}
+.activity-header .activity-name{font-size:11px; font-weight:700; line-height:1.25; color:var(--ink-soft); margin-bottom:3px;}
+.activity-header h3{margin:0; font-family:'Plus Jakarta Sans',sans-serif; font-size:15.5px; line-height:1.3; font-weight:800; color:var(--forest-600);}
+.activity-image{flex:1 1 auto; min-height:0; overflow:hidden; border-radius:var(--radius-md);}
+.activity-image .activity-gallery{width:100%; height:100%; min-height:0; aspect-ratio:auto; margin-bottom:0; border-radius:inherit;}
+.activity-front-skills{display:flex; flex:0 0 auto; flex-wrap:wrap; gap:5px; margin-top:0;}
+.activity-front-skills span{font-size:10px; line-height:1.2; font-weight:700; padding:4px 8px; border-radius:var(--radius-pill); background:var(--forest-50); color:var(--forest-600);}
+.activity-front.pink .activity-header{background:rgba(243,191,214,.58); color:#5C2F42;}
+.activity-front.yellow .activity-header{background:rgba(255,232,154,.62); color:#5C4A16;}
+.activity-front.blue .activity-header{background:rgba(198,223,250,.62); color:#233F5C;}
+.activity-front.purple .activity-header{background:rgba(217,201,240,.62); color:#3F2E5C;}
+.activity-front.pink .activity-header .activity-name,.activity-front.pink .activity-header h3{color:#5C2F42;}
+.activity-front.yellow .activity-header .activity-name,.activity-front.yellow .activity-header h3{color:#5C4A16;}
+.activity-front.blue .activity-header .activity-name,.activity-front.blue .activity-header h3{color:#233F5C;}
+.activity-front.purple .activity-header .activity-name,.activity-front.purple .activity-header h3{color:#3F2E5C;}
+.activity-front.pink .activity-front-skills span{background:rgba(243,191,214,.32); color:#5C2F42;}
+.activity-front.yellow .activity-front-skills span{background:rgba(255,232,154,.36); color:#5C4A16;}
+.activity-front.blue .activity-front-skills span{background:rgba(198,223,250,.38); color:#233F5C;}
+.activity-front.purple .activity-front-skills span{background:rgba(217,201,240,.38); color:#3F2E5C;}
 .activity-card:focus-visible{outline:3px solid var(--sky-500); outline-offset:4px; border-radius:var(--radius-lg);}
 .activity-overlay{
   position:absolute; left:10px; right:10px; bottom:10px; border-radius:var(--radius-md); padding:10px 14px;
@@ -333,6 +359,8 @@ section > .wrap{position:relative; z-index:1;}
 .flip-back h6{margin:0 0 4px; font-size:11.5px; font-weight:800; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-soft);}
 .flip-back ul{margin:0; padding-left:16px; font-size:12.5px; color:var(--ink); display:flex; flex-direction:column; gap:2px;}
 .flip-back p{margin:0; font-size:12.5px; color:var(--ink);}
+.activity-skill-tags{display:flex; flex-wrap:wrap; gap:5px; margin-top:8px;}
+.activity-skill-tags span{font-size:10px; font-weight:700; padding:4px 8px; border-radius:var(--radius-pill); background:var(--forest-50); color:var(--forest-600);}
 @media (prefers-reduced-motion: reduce){ .activity-card .flip-inner{transition:none;} }
 @media (max-width:600px){ .activity-card{width:230px; height:320px;} }
 .slide-card{scroll-snap-align:start; flex:0 0 auto; width:260px; background:var(--cream-50); border:1.5px solid var(--cream-300); border-radius:var(--radius-lg); padding:var(--sp-4); box-shadow:var(--shadow-sm); transition:transform .25s ease;}
@@ -493,29 +521,16 @@ footer.site-footer{text-align:center; padding:var(--sp-7) var(--sp-5) var(--sp-8
     </div>
 
     <div class="skills-cats">
-      <div class="skill-cat reveal">
+      <div class="skill-cat methods-cat reveal">
         <h4>Methods &amp; Frameworks</h4>
-        <div class="bubble-menu">
-          <span class="bubble">Design Thinking</span>
-          <span class="bubble">UX Research</span>
-          <span class="bubble">Wireframing</span>
-          <span class="bubble">Prototyping</span>
-          <span class="bubble">Usability Testing</span>
-          <span class="bubble">Nielsen's Heuristics</span>
-          <span class="bubble">Agile / Scrum</span>
-          <span class="bubble">Business Model Canvas</span>
+        <div class="marquee skill-marquee">
+          <div class="marquee-track left" id="methodsMarquee"></div>
         </div>
       </div>
-      <div class="skill-cat reveal delay-1">
+      <div class="skill-cat work-cat reveal delay-1">
         <h4>Soft Skills</h4>
-        <div class="bubble-menu">
-          <span class="bubble">Communication</span>
-          <span class="bubble">Collaboration</span>
-          <span class="bubble">Adaptability</span>
-          <span class="bubble">Problem Solving</span>
-          <span class="bubble">Critical Thinking</span>
-          <span class="bubble">Time Management</span>
-          <span class="bubble">Teamwork</span>
+        <div class="marquee skill-marquee">
+          <div class="marquee-track right" id="softSkillsMarquee"></div>
         </div>
       </div>
     </div>
@@ -642,6 +657,8 @@ const skillsRow2 = [
   {name:"ChatGPT", logo:"assets/tools/openai-chatgpt.svg"},
   {name:"Lovable", logo:"assets/tools/lovable.svg"}
 ];
+const methodsFrameworks = ["Workflow Analysis","System Analysis","User Flow","UX Research","Wireframing","Prototyping","Usability Testing","Design Thinking","Double Diamond","Problem Framing","Business Model Canvas","Agile / Scrum","Waterfall"];
+const softSkills = ["Communication","Collaboration","Adaptability","Problem Solving","Critical Thinking","Initiative","Fast Learning","Attention to Detail","Time Management"];
 
 const projects = [
   {
@@ -680,30 +697,48 @@ const internshipProjects = [
   {
     image:"assets/projects/wela-skin/wela-skin-cover.png", bg:"linear-gradient(135deg,var(--sage-200),var(--sky-200))", cat:"AI-assisted Commerce · Beauty Tech", year:"2026",
     name:"Wela Skin AI", desc:"AI-assisted skin analysis and product recommendation experience developed during my internship at Allmass Idea.", role:"UX/UI Designer & AI Product Researcher", tools:"UX/UI, AI Product Research, Front-end Prototype, Back-end Prototype, API Integration, AI Model Experimentation, Recommendation Logic, Codex CLI",
-    gallery:["assets/projects/wela-skin/wela-skin-flow.png","assets/projects/wela-skin/wela-skin-screens.png"],
-    overview:"An AI-assisted skin analysis and commerce concept connected with skincare and wellness recommendations.", problem:"Exploring how skin analysis results can connect with suitable product recommendations in a practical, user-centered experience while considering trust, consent, and PDPA-related concerns.", solution:"A prototype experience connecting skin-analysis flow, product recommendations, and commerce flow while linking AI capabilities with user and business goals.", contribution:["Designed and developed front-end prototype concepts","Worked on back-end prototype exploration","Supported API integration","Experimented with AI model workflows","Explored recommendation logic for matching analysis results with suitable products","Researched trust, consent, and PDPA considerations","Used Codex CLI to support research, implementation, debugging, and rapid prototyping"], learnings:["Learned how UX/UI, AI experimentation, APIs, and product logic connect in a real product concept."]
+    gallery:["assets/projects/wela-skin/wela-skin-flow.png"],
+    story:{
+      overview:"An internship prototype exploring an AI-assisted skin-analysis journey connected with skincare and wellness product recommendations.",
+      initialChallenge:"The brief covered a broad concept: make skin-analysis results useful in a practical, user-centered commerce experience while keeping trust, consent, and PDPA-related concerns visible.",
+      approach:"I broke the concept into a user/product flow, then explored how the recommendation experience could connect to front-end screens, API integration, AI model workflows, and recommendation logic. I used Codex CLI to support research, implementation, debugging, and rapid prototyping.",
+      initiative:"I designed and developed front-end prototype concepts, explored back-end prototype options, supported API integration, experimented with AI model workflows, and researched trust and privacy considerations.",
+      collaboration:"I brought open questions about the flow, implementation options, recommendation behavior, and trust considerations into team discussions, then refined the prototype direction as feedback and feasibility questions became clearer.",
+      process:"The work moved from a broad idea to clearer user flows, prototype screens, implementation options, and a more concrete set of questions about recommendation logic, consent, and privacy. This made the next decisions more practical without implying a production backend or production AI system.",
+      learning:"I learned to make progress on an open-ended product idea by structuring the questions first, communicating options clearly, and iterating between user experience, technical feasibility, and trust."
+    },
+    skillTags:["Initiative","Problem Solving","Fast Learning","Collaboration","Adaptability"]
   },
   {
     image:"assets/projects/kombatx/kombatx-dashboard.png", bg:"linear-gradient(135deg,var(--cream-200),var(--sky-200))", cat:"Computer Vision · Sports Analytics · Muay Thai", year:"2026",
     name:"KombatX.ai", desc:"AI-powered Muay Thai analytics platform that transforms match footage into clearer performance insights.", role:"UX/UI Designer & AI Model Training Contributor", tools:"YOLOv8, ViTPose, SlowFast, Roboflow, FastAPI, PostgreSQL / TimescaleDB, React, WebSockets",
     gallery:["assets/projects/kombatx/kombatx-dataset-labeling.png","assets/projects/kombatx/kombatx-mobile.png","assets/projects/kombatx/kombatx-model-training.png"],
-    overview:"A sports analytics platform for Muay Thai focused on transforming fight footage into more understandable performance information.", problem:"Performance information from fight footage can be difficult to interpret without clearer match statistics, strike data, and comparison views.", solution:"Dashboard and analytics concepts for match statistics, strike data, hit zones, athlete comparison, performance indicators, and post-match analysis.", contribution:["Designed dashboards for match statistics","Designed strike-data and performance-indicator views","Designed athlete comparison interfaces","Researched computer vision, object detection, and sports analytics","Prepared and labelled an approximately 500-image dataset during AI experimentation","Used Roboflow and contributed to YOLO prototype training","Helped translate complex AI/analytics outputs into understandable user-facing information","Contributed to AI model training and experimentation","Supported product/frontend prototyping"], learnings:["Balance model experimentation, data preparation, and clarity for a non-technical audience."], video:"videos/projects/kombatx-preview.mp4"
+    story:{
+      overview:"An internship sports-analytics project for Muay Thai, exploring how fight footage and AI experimentation could become more understandable performance information.",
+      initialChallenge:"The challenge was to connect computer-vision and sports-analytics research with useful product views, including match statistics, strike data, hit zones, athlete comparison, performance indicators, and post-match analysis.",
+      approach:"I researched computer vision, object detection, and sports analytics, prepared and labelled an approximately 500-image experimental dataset, and used Roboflow while contributing to YOLO prototype training and model experimentation. In parallel, I explored how the outputs could be organised in dashboards and interfaces.",
+      initiative:"I worked through the data-preparation and annotation steps, investigated relevant AI approaches, designed match-statistics and performance-indicator views, and created athlete-comparison interface concepts so technical outputs could be discussed as product decisions.",
+      collaboration:"I communicated the relationship between model outputs, data limitations, and interface needs with the team, then adjusted the dashboard and analytics direction as the AI experimentation clarified what could be presented usefully.",
+      process:"The process became clearer by linking each experiment to a possible user-facing insight: what the dataset could support, what the model output might represent, and how that information should be compared or explained. The result remained an experimental prototype direction, not a claim of production-level real-time AI performance.",
+      learning:"I learned to treat AI feasibility, data preparation, and interface clarity as connected parts of the same product question—and to make progress by testing, communicating, and refining the direction."
+    },
+    skillTags:["Ownership","Initiative","Problem Solving","Collaboration","Adaptability"], video:"videos/projects/kombatx-preview.mp4"
   }
 ];
 
 const activities = [
   {images:["assets/activities/bu-open-house.jpg"], cat:"BU Open House 2024", title:"Faculty & Programme Representative", desc:"Introduced the faculty, Computer Science programme, and student experience to visiting secondary-school students.",
     whatIDid:["Represented the School of Information Technology and Innovation","Introduced academic programmes and the Computer Science major","Answered visitors’ questions","Coordinated with other student representatives"],
-    takeaway:"Improved my communication skills and learned how to explain academic information clearly while creating a welcoming experience for visitors.", overlay:"pink"},
+    takeaway:"Improved my communication and coordination skills by explaining academic information clearly, answering visitors’ questions, and working with other student representatives.", skillTags:["Communication","Responsibility","Coordination"], frontSkillTags:["Communication","Coordination","Responsibility"], overlay:"pink"},
   {images:["assets/activities/mini-hackathon.jpg"], cat:"BU Empowering Hackathon 2026", title:"Researcher & AI Model Training Contributor", desc:"Contributed to research, brainstorming, and AI model training under a limited timeframe.",
     whatIDid:["Researched relevant datasets and AI approaches","Collaborated on problem definition and solution direction","Contributed to AI experimentation and model training","Supported presentation preparation under a limited timeframe"],
-    takeaway:"Learned how to solve problems quickly, collaborate under time pressure, and iterate on AI ideas within a hackathon environment.", overlay:"yellow"},
+    takeaway:"Strengthened my problem-solving and teamwork skills by researching unfamiliar approaches, adapting quickly, and contributing to a shared solution within a limited timeframe.", skillTags:["Problem Solving","Teamwork","Adaptability","Working Under Pressure"], frontSkillTags:["Problem Solving","Teamwork","Adaptability"], overlay:"yellow"},
   {images:["assets/activities/kait-overview.jpg","assets/activities/kait-activity-01.jpg","assets/activities/kait-activity-02.jpg","assets/activities/kait-activity-03.jpg"], cat:"International Program BU × KAIT 2026", title:"International Exchange Buddy & Project Team Member", desc:"Supported Japanese exchange students and collaborated on an AI project for smart cultural experience.",
     whatIDid:["Supported Japanese exchange students during academic and cultural activities","Helped with communication and adaptation during the programme","Contributed to research, coordination, and presentation preparation","Collaborated on an AI-related project in a multicultural team"],
-    takeaway:"Strengthened my cross-cultural communication, teamwork, and coordination skills while working with students from different backgrounds.", overlay:"blue"},
+    takeaway:"Strengthened my cross-cultural communication and adaptability by supporting exchange students and collaborating with team members from different backgrounds.", skillTags:["Cross-cultural Communication","Collaboration","Adaptability"], frontSkillTags:["Cross-cultural Communication","Collaboration","Adaptability"], overlay:"blue"},
   {images:["assets/activities/tech-source-01.jpg","assets/activities/tech-source-02.jpg"], cat:"Techsauce 2026", title:"Event Attendee", desc:"Attended Techsauce to explore trends in technology, AI, and digital innovation, while learning from industry talks and gaining broader perspectives on the tech ecosystem.",
     whatIDid:["Attended Techsauce 2026","Explored technology, AI, and digital innovation showcases","Learned from industry talks and company exhibitions","Observed how technology is applied to real business problems"],
-    takeaway:"Gained broader exposure to the technology ecosystem and a better understanding of how AI and digital solutions are being applied in industry.", overlay:"purple"}
+    takeaway:"Expanded my understanding of current technology, AI, and digital business applications through industry talks, showcases, and real-world examples.", skillTags:["Curiosity","Continuous Learning","Business & Technology Awareness"], frontSkillTags:["Curiosity","Continuous Learning","Tech Awareness"], overlay:"purple"}
 ];
 
 const certs = [
@@ -802,17 +837,42 @@ function buildMarquee(el, items){
   el.appendChild(duplicate);
   el.style.visibility = '';
 }
+function buildTextMarquee(el, items){
+  const pillMarkup = items.map(name=>`<span class="pill text-pill">${name}</span>`).join('');
+  const group = document.createElement('div');
+  group.className = 'marquee-group';
+  el.style.visibility = 'hidden';
+  el.replaceChildren(group);
+
+  let repetitions = 0;
+  do{
+    group.insertAdjacentHTML('beforeend', pillMarkup);
+    repetitions++;
+  }while(group.getBoundingClientRect().width < window.innerWidth * 1.2 && repetitions < 20);
+
+  const duplicate = group.cloneNode(true);
+  duplicate.setAttribute('aria-hidden','true');
+  el.appendChild(duplicate);
+  el.style.visibility = '';
+}
+function buildSkillMarquees(){
+  buildTextMarquee(document.getElementById('methodsMarquee'), methodsFrameworks);
+  buildTextMarquee(document.getElementById('softSkillsMarquee'), softSkills);
+}
 buildMarquee(document.getElementById('marquee1'), skillsRow1);
 buildMarquee(document.getElementById('marquee2'), skillsRow2);
+buildSkillMarquees();
 if(document.fonts){
   document.fonts.ready.then(()=>{
     buildMarquee(document.getElementById('marquee1'), skillsRow1);
     buildMarquee(document.getElementById('marquee2'), skillsRow2);
+    buildSkillMarquees();
   });
 }
 window.addEventListener('resize', ()=>{
   buildMarquee(document.getElementById('marquee1'), skillsRow1);
   buildMarquee(document.getElementById('marquee2'), skillsRow2);
+  buildSkillMarquees();
 }, {passive:true});
 
 /* =====================================================
@@ -919,17 +979,31 @@ function wireProjectMedia(){
     media.addEventListener('click', ()=>openMediaLightbox(media.dataset.lightboxSrc, media.dataset.lightboxAlt));
   });
 }
-function openProjectModal(p){
-  modalContent.innerHTML = `
-    <h3 id="modalTitle">${p.name}</h3>
-    <div class="meta"><span class="tag">${p.role}</span><span class="tag">${p.tools}</span>${p.year ? `<span class="tag">${p.cat} · ${p.year}</span>` : ''}</div>
-    ${renderProjectGallery(p)}
-    ${p.video ? `<div class="block"><h5>Project video</h5><video controls preload="metadata" style="width:100%;border-radius:12px" src="${p.video}"></video></div>` : ''}
+function renderProjectStory(p){
+  if(!p.story) return `
     <div class="block"><h5>Overview</h5><p>${p.overview}</p></div>
     <div class="block"><h5>Problem</h5><p>${p.problem}</p></div>
     ${p.solution ? `<div class="block"><h5>Solution / Output</h5><p>${p.solution}</p></div>` : ''}
     <div class="block"><h5>My Contribution</h5><ul>${p.contribution.map(c=>`<li>${c}</li>`).join('')}</ul></div>
-    <div class="block"><h5>Key Takeaways</h5><ul>${p.learnings.map(c=>`<li>${c}</li>`).join('')}</ul></div>
+    <div class="block"><h5>Key Takeaways</h5><ul>${p.learnings.map(c=>`<li>${c}</li>`).join('')}</ul></div>`;
+  const sections = [
+    ["Project Overview", p.story.overview],
+    ["Initial Challenge", p.story.initialChallenge],
+    ["How I Approached the Problem", p.story.approach],
+    ["What I Took Initiative On", p.story.initiative],
+    ["Collaboration & Iteration", p.story.collaboration],
+    ["How the Process Became Clearer", p.story.process],
+    ["Key Learning", p.story.learning]
+  ];
+  return sections.map(([heading, copy])=>`<div class="block"><h5>${heading}</h5><p>${copy}</p></div>`).join('');
+}
+function openProjectModal(p){
+  modalContent.innerHTML = `
+    <h3 id="modalTitle">${p.name}</h3>
+    <div class="meta"><span class="tag">${p.role}</span><span class="tag">${p.tools}</span>${p.year ? `<span class="tag">${p.cat} · ${p.year}</span>` : ''}${p.skillTags ? p.skillTags.map(tag=>`<span class="tag">${tag}</span>`).join('') : ''}</div>
+    ${renderProjectGallery(p)}
+    ${p.video ? `<div class="block"><h5>Project video</h5><video controls preload="metadata" style="width:100%;border-radius:12px" src="${p.video}"></video></div>` : ''}
+    ${renderProjectStory(p)}
   `;
   wireProjectMedia();
   overlay.classList.add('open');
@@ -955,14 +1029,19 @@ function buildSlider(el, items){
     <div class="activity-card" tabindex="0" role="button" aria-pressed="false" aria-label="Flip card to see what I did for ${it.title}">
       <div class="flip-inner">
         <div class="flip-front">
-          <div class="slide-cover activity-gallery" data-activity-index="${activityIndex}" style="position:absolute; inset:0;">
-            ${it.images.map((src,imageIndex)=>`<img class="activity-gallery-image${imageIndex===0?' is-active':''}" src="${src}" alt="${it.title} image ${imageIndex+1}" loading="${activityIndex<2 && imageIndex===0?'eager':'lazy'}" aria-hidden="${imageIndex===0?'false':'true'}">`).join('')}
+          <div class="activity-front ${it.overlay||'blue'}">
+            <div class="activity-header">
+              <div class="activity-name">${it.cat}</div>
+              <h3>${it.title}</h3>
+            </div>
+            <div class="activity-image">
+              <div class="slide-cover activity-gallery" data-activity-index="${activityIndex}">
+                ${it.images.map((src,imageIndex)=>`<img class="activity-gallery-image${imageIndex===0?' is-active':''}" src="${src}" alt="${it.title} image ${imageIndex+1}" loading="${activityIndex<2 && imageIndex===0?'eager':'lazy'}" aria-hidden="${imageIndex===0?'false':'true'}">`).join('')}
+              </div>
+            </div>
+            <div class="activity-front-skills" aria-label="Skills developed">${(it.frontSkillTags||[]).map(tag=>`<span>${tag}</span>`).join('')}</div>
           </div>
           <span class="activity-flip-hint" aria-hidden="true">flip</span>
-          <div class="activity-overlay ${it.overlay||'blue'}">
-            <div class="meta2">${it.cat}</div>
-            <h5>${it.title}</h5>
-          </div>
         </div>
         <div class="flip-back">
           <h5>${it.title}</h5>
@@ -974,6 +1053,7 @@ function buildSlider(el, items){
             <h6>Key Takeaway</h6>
             <p>${it.takeaway}</p>
           </div>
+          ${it.skillTags ? `<div class="activity-skill-tags" aria-label="Skills developed">${it.skillTags.map(tag=>`<span>${tag}</span>`).join('')}</div>` : ''}
         </div>
       </div>
     </div>`).join('');
