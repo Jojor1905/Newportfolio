@@ -121,7 +121,6 @@ section > .wrap{position:relative; z-index:1;}
 .flip-card .flip-front img, .flip-card .flip-back img{width:100%;height:100%;object-fit:cover;object-position:center top;}
 .flip-card .flip-back{transform:rotateY(180deg);}
 .flip-card:focus-visible{outline:3px solid var(--sky-500); outline-offset:5px;}
-@media (hover:hover){ .flip-card:hover .flip-inner{transform:rotateY(180deg);} }
 @media (prefers-reduced-motion: reduce){ .flip-card .flip-inner{transition:none;} }
 .hero-statement{
   max-width:52ch; font-size:17px; color:var(--ink-soft); opacity:0;
@@ -792,21 +791,34 @@ const navIO = new IntersectionObserver((entries)=>{
 sections.forEach(s=>navIO.observe(s));
 
 /* =====================================================
-   FLIP CARDS (hero + about portraits)
+   FLIP CARDS (portraits + activities)
 ===================================================== */
-function wireFlipCards(){
-  document.querySelectorAll('.flip-card, .hero-flip').forEach(card=>{
-    const toggle = ()=>{
-      const flipped = card.classList.toggle('is-flipped');
+const flipHoverMedia = window.matchMedia('(hover: hover) and (pointer: fine)');
+function wireFlipCards(cards){
+  cards.forEach(card=>{
+    const setFlipped = (flipped)=>{
+      card.classList.toggle('is-flipped', flipped);
       card.setAttribute('aria-pressed', flipped ? 'true' : 'false');
     };
-    card.addEventListener('click', toggle);
+    const toggle = ()=>setFlipped(!card.classList.contains('is-flipped'));
+    card.addEventListener('mouseenter', ()=>{
+      if(flipHoverMedia.matches) setFlipped(true);
+    });
+    card.addEventListener('mouseleave', ()=>{
+      if(flipHoverMedia.matches) setFlipped(false);
+    });
+    card.addEventListener('click', ()=>{
+      if(!flipHoverMedia.matches) toggle();
+    });
     card.addEventListener('keydown', (e)=>{
-      if(e.key==='Enter' || e.key===' '){ e.preventDefault(); toggle(); }
+      if(e.key==='Enter' || e.key===' '){
+        e.preventDefault();
+        if(!e.repeat) toggle();
+      }
     });
   });
 }
-wireFlipCards();
+wireFlipCards(document.querySelectorAll('.flip-card, .hero-flip'));
 
 /* =====================================================
    HERO PER-WORD SPRING REVEAL
@@ -1058,14 +1070,7 @@ function buildSlider(el, items){
       </div>
     </div>`).join('');
 
-  el.querySelectorAll('.activity-card').forEach(card=>{
-    const toggle = ()=>{
-      const flipped = card.classList.toggle('is-flipped');
-      card.setAttribute('aria-pressed', flipped ? 'true' : 'false');
-    };
-    card.addEventListener('click', toggle);
-    card.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); toggle(); } });
-  });
+  wireFlipCards(el.querySelectorAll('.activity-card'));
 }
 buildSlider(document.getElementById('activitySlider'), activities);
 function wireActivityGalleries(el){
