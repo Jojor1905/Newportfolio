@@ -264,6 +264,22 @@ section > .wrap{position:relative; z-index:1;}
 .modal-close{position:absolute; top:18px; right:18px; width:36px; height:36px; border-radius:50%; border:1px solid var(--cream-300); background:var(--cream-50); color:var(--forest-600); cursor:pointer; font-size:16px;}
 .modal h3{font-size:26px; font-weight:800; margin:0 0 4px;}
 .modal .meta{display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 var(--sp-5);}
+.project-links{display:flex; flex-wrap:wrap; gap:10px; margin:0 0 var(--sp-5);}
+.project-link{display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; max-width:100%; padding:10px 16px; border:1px solid var(--sky-300); border-radius:var(--radius-md); background:var(--cream-50); color:var(--forest-600); font-size:14px; font-weight:700; line-height:1.4; transition:transform .2s ease, box-shadow .2s ease, background-color .2s ease, border-color .2s ease;}
+.project-link span{min-width:0; overflow-wrap:anywhere;}
+.project-link img{width:22px; height:22px; flex:0 0 22px; object-fit:contain;}
+.project-link--live{background:var(--sky-200); border-color:var(--sky-400); color:var(--forest-900); box-shadow:var(--shadow-sm);}
+.project-link-arrow{width:18px; height:18px; flex:0 0 18px; transition:transform .2s ease;}
+.project-link:focus-visible{outline:3px solid var(--sky-500); outline-offset:3px;}
+@media (hover:hover) and (pointer:fine){
+  .project-link:hover{transform:translateY(-2px); background:var(--sky-50); border-color:var(--sky-500); box-shadow:var(--shadow-sm);}
+  .project-link--live:hover{background:var(--sky-300); box-shadow:var(--shadow-md);}
+  .project-link--live:hover .project-link-arrow{transform:translate(2px,-2px);}
+}
+@media (prefers-reduced-motion:reduce){
+  .project-link,.project-link-arrow{transition:none;}
+  .project-link:hover,.project-link--live:hover .project-link-arrow{transform:none;}
+}
 .project-gallery{display:flex; flex-direction:column; gap:var(--sp-4); margin:0 0 var(--sp-5);}
 .project-media-grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--sp-4);}
 .project-media{display:block; width:100%; margin:0; padding:0; border:1px solid var(--cream-300); border-radius:16px; overflow:hidden; background:var(--cream-50); cursor:zoom-in;}
@@ -676,12 +692,14 @@ const projects = [
   {
     image:"assets/projects/my-day/my-day-cover.webp", bg:"linear-gradient(135deg,var(--cream-200),var(--sage-100))", cat:"Mobile App · UX/UI",
     name:"My Day App", desc:"A habit and routine app concept with gamification and tracking views.", role:"Product Designer", tools:"Figma, design system, mobile UX",
+    figmaUrl:"https://www.figma.com/design/xGKsLIgdGDuyTU7jFI8y5k/MyDay_Appilcation?node-id=0-1&t=QvBDcDCZnH41durY-1",
     gallery:["assets/projects/my-day/my-day-onboarding.png","assets/projects/my-day/my-day-dashboard-gamification.png","assets/projects/my-day/my-day-tracking-calendar.png","assets/projects/my-day/my-day-design-system.png","assets/projects/my-day/my-day-iconography.png"],
     overview:"A mobile-app concept documented through onboarding, dashboard, tracking-calendar, design-system, and iconography screens.", problem:"People need a lightweight way to make daily routines visible and motivating.", solution:"A mobile experience organised around onboarding, dashboard, tracking, and gamification concepts.", contribution:["Designed onboarding and dashboard experiences","Created a reusable visual system","Explored gamification and calendar tracking"], learnings:["Consistent small interaction patterns make routine-building feel approachable."]
   },
   {
     image:"assets/projects/sketch2spec/sketch2spec-cover.png", bg:"linear-gradient(135deg,var(--sage-200),var(--cream-200))", cat:"AI-Powered Architectural Visualization & BOQ Platform",
     name:"Sketch2Spec", desc:"An AI-assisted architectural visualization and BOQ concept for clearer renovation and construction planning.", role:"Product / UX Concept", tools:"AI-assisted interpretation, computer vision, Figma",
+    githubLinks:[{"label":"View GitHub","url":"https://github.com/Jojor1905/Sketch2Spec"}],
     gallery:["assets/projects/sketch2spec/sketch2spec-detail-01.png","assets/projects/sketch2spec/sketch2spec-detail-02.png"],
     overview:"An SCG Industry Challenge concept exploring how floor-plan information could support architectural visualization and material / BOQ-related planning.", problem:"Communication between homeowners, sales or contractor stakeholders, and construction or material workflows can become unclear when floor-plan information is difficult to interpret.", solution:"An AI-assisted concept for processing floor-plan information into clearer visual and material-planning outputs within the project’s MVP direction.", contribution:["Framed the concept and user value","Created the project presentation visuals","Explored how AI-assisted interpretation could make spatial ideas more tangible"], learnings:["Visual clarity can help people discuss an early idea before it becomes a finished design."]
   },
@@ -697,6 +715,8 @@ const internshipProjects = [
   {
     image:"assets/projects/wela-skin/wela-skin-cover.png", bg:"linear-gradient(135deg,var(--sage-200),var(--sky-200))", cat:"AI-assisted Commerce · Beauty Tech", year:"2026",
     name:"Wela Skin AI", desc:"AI-assisted skin analysis and product recommendation experience developed during my internship at Allmass Idea.", role:"UX/UI Designer & AI Product Researcher", tools:"UX/UI, AI Product Research, Front-end Prototype, Back-end Prototype, API Integration, AI Model Experimentation, Recommendation Logic, Codex CLI",
+    githubLinks:[{"label":"LIFF Prototype","url":"https://github.com/Jojor1905/wela-liff-prototype"},{"label":"Skin AI Prototype","url":"https://github.com/Jojor1905/wela-skin-ai"}],
+    figmaUrl:"https://www.figma.com/design/BsvwxxlCfFjCeoorvKcg1f/Skincare-flow?node-id=0-1&t=0EJo368GcAbz9xCA-1",
     gallery:["assets/projects/wela-skin/wela-skin-flow.png"],
     story:{
       overview:"An internship prototype exploring an AI-assisted skin-analysis journey connected with skincare and wellness product recommendations.",
@@ -712,6 +732,9 @@ const internshipProjects = [
   {
     image:"assets/projects/kombatx/kombatx-dashboard.png", bg:"linear-gradient(135deg,var(--cream-200),var(--sky-200))", cat:"Computer Vision · Sports Analytics · Muay Thai", year:"2026",
     name:"KombatX.ai", desc:"AI-powered Muay Thai analytics platform that transforms match footage into clearer performance insights.", role:"UX/UI Designer & AI Model Training Contributor", tools:"YOLOv8, ViTPose, SlowFast, Roboflow, FastAPI, PostgreSQL / TimescaleDB, React, WebSockets",
+    githubLinks:[{"label":"View GitHub","url":"https://github.com/Jojor1905/KombatxAI-frontend"}],
+    figmaUrl:"https://www.figma.com/design/mYrgs4ChCUfCzLrhAyGH06/Konbatx.ai?node-id=0-1&t=0EJo368GcAbz9xCA-1",
+    liveUrl:"https://kombatx-ai-frontend.vercel.app",
     gallery:["assets/projects/kombatx/kombatx-dataset-labeling.png","assets/projects/kombatx/kombatx-mobile.png","assets/projects/kombatx/kombatx-model-training.png"],
     story:{
       overview:"An internship sports-analytics project for Muay Thai, exploring how fight footage and AI experimentation could become more understandable performance information.",
@@ -1011,10 +1034,26 @@ function renderProjectStory(p){
   ];
   return sections.map(([heading, copy])=>`<div class="block"><h5>${heading}</h5><p>${copy}</p></div>`).join('');
 }
+function renderProjectLinks(p){
+  const links = (p.githubLinks||[]).filter(link=>link.url).map(link=>({
+    kind:'github', label:link.label, url:link.url,
+    ariaLabel:`Open ${p.name} ${link.label==='View GitHub'?'GitHub repository':link.label+' GitHub repository'} in a new tab`
+  }));
+  if(p.figmaUrl) links.push({kind:'figma', label:'View Figma', url:p.figmaUrl, ariaLabel:`Open ${p.name} Figma design in a new tab`});
+  if(p.liveUrl) links.push({kind:'live', label:'Click me', url:p.liveUrl, ariaLabel:`Open the ${p.name} live prototype in a new tab`});
+  if(!links.length) return '';
+  return `<div class="project-links" role="group" aria-label="${p.name} external project links">${links.map(link=>`
+    <a class="project-link project-link--${link.kind}" href="${link.url}" target="_blank" rel="noopener noreferrer" aria-label="${link.ariaLabel}">
+      ${link.kind!=='live'?`<img src="assets/tools/${link.kind}.svg" alt="" aria-hidden="true">`:''}
+      <span>${link.label}</span>
+      ${link.kind==='live'?'<svg class="project-link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg>':''}
+    </a>`).join('')}</div>`;
+}
 function openProjectModal(p){
   modalContent.innerHTML = `
     <h3 id="modalTitle">${p.name}</h3>
     <div class="meta"><span class="tag">${p.role}</span><span class="tag">${p.tools}</span>${p.year ? `<span class="tag">${p.cat} · ${p.year}</span>` : ''}${p.skillTags ? p.skillTags.map(tag=>`<span class="tag">${tag}</span>`).join('') : ''}</div>
+    ${renderProjectLinks(p)}
     ${renderProjectGallery(p)}
     ${p.video ? `<div class="block"><h5>Project video</h5><video controls preload="metadata" style="width:100%;border-radius:12px" src="${p.video}"></video></div>` : ''}
     ${renderProjectStory(p)}
