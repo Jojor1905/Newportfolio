@@ -89,16 +89,16 @@ section > .wrap{position:relative; z-index:1;}
 .hero-intro{font-size:16px; color:var(--ink-soft); font-weight:600;}
 .hero-name{
   font-family:'Fredoka',sans-serif; font-size:clamp(56px,12vw,132px); font-weight:600; line-height:.9; letter-spacing:-.02em; color:var(--forest-500);
-  display:flex; flex-direction:column; align-items:center; position:relative;
+  display:flex; flex-direction:column; align-items:center; gap:clamp(8px,1vw,14px); position:relative;
 }
 .hero-name .first, .hero-name .last{opacity:0; transition:opacity .8s ease, transform .8s ease;}
 .hero-name .first{transform:translateX(-40px);}
 .hero-name .last{transform:translateX(40px);}
 .hero-name.in .first, .hero-name.in .last{opacity:1; transform:translateX(0);}
 .hero-portrait{
-  width:clamp(120px,18vw,190px); aspect-ratio:1; border-radius:44% 56% 58% 42% / 48% 42% 58% 52%;
+  width:clamp(120px,18vw,190px); aspect-ratio:1; border-radius:50%;
   background:linear-gradient(135deg,var(--sky-200),var(--sage-200) 55%,var(--cream-200));
-  display:flex; align-items:center; justify-content:center; margin:8px 0;
+  display:flex; align-items:center; justify-content:center; margin:0;
   font-size:clamp(34px,5vw,54px); font-weight:800; color:var(--cream-100); box-shadow:var(--shadow-md);
   position:relative; overflow:hidden; transform:scale(.9); opacity:0; transition:transform .9s cubic-bezier(.2,.8,.2,1), opacity .9s ease; transition-delay:.5s;
 }
@@ -110,6 +110,10 @@ section > .wrap{position:relative; z-index:1;}
 .hero-flip-back{transform:rotateY(180deg);}
 .hero-flip-face img{display:block; width:100%; height:100%; object-fit:cover; object-position:center top;}
 .hero-portrait.in{transform:scale(1); opacity:1;}
+@media (max-width:600px){
+  .hero{align-items:flex-start; padding-top:calc(var(--sp-9) + 20px);}
+  .hero-name{gap:10px;}
+}
 
 /* =====================================================
    FLIP CARD (hero + about portraits)
@@ -240,6 +244,7 @@ section > .wrap{position:relative; z-index:1;}
 .project-cover .num{position:absolute; top:14px; left:16px; font-size:12px; font-weight:800; font-family:monospace; background:rgba(255,253,251,.78); color:var(--forest-700); padding:3px 9px; border-radius:var(--radius-pill);}
 .project-cover img.icon{width:52px; height:52px; transition:transform .4s ease;}
 .project-cover img.cover-image{width:100%;height:100%;object-fit:cover;}
+.project-cover img.cover-image--contain{object-fit:contain; padding:10px;}
 .project-card:hover .project-cover img.icon{transform:scale(1.12) rotate(-4deg);}
 .project-body{padding:var(--sp-5) var(--sp-5) var(--sp-6);}
 .project-body h4{margin:0 0 4px; font-size:20px; line-height:1.3; font-weight:700; transition:transform .2s ease;}
@@ -263,6 +268,7 @@ section > .wrap{position:relative; z-index:1;}
 .modal-overlay.open .modal{transform:translateY(0) scale(1);}
 .modal-close{position:absolute; top:18px; right:18px; width:36px; height:36px; border-radius:50%; border:1px solid var(--cream-300); background:var(--cream-50); color:var(--forest-600); cursor:pointer; font-size:16px;}
 .modal h3{font-size:26px; font-weight:800; margin:0 0 4px;}
+.modal .subtitle{margin:0; color:var(--ink-soft); font-size:14px; font-weight:700;}
 .modal .meta{display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 var(--sp-5);}
 .project-links{display:flex; flex-wrap:wrap; gap:10px; margin:0 0 var(--sp-5);}
 .project-link{display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; max-width:100%; padding:10px 16px; border:1px solid var(--sky-300); border-radius:var(--radius-md); background:var(--cream-50); color:var(--forest-600); font-size:14px; font-weight:700; line-height:1.4; transition:transform .2s ease, box-shadow .2s ease, background-color .2s ease, border-color .2s ease;}
@@ -460,15 +466,14 @@ footer.site-footer{text-align:center; padding:var(--sp-7) var(--sp-5) var(--sp-8
   <div class="sticker-motif motif-star" style="top:14%; left:9%; width:34px; height:34px; --tilt:-8deg; --delay:-1s;" aria-hidden="true"></div>
 
   <div class="wrap hero-grid">
-    <p class="hero-intro reveal" id="heroIntro">Hello, I'm</p>
     <div class="hero-name" id="heroName">
-      <span class="first">Chakhriya</span>
       <div class="hero-portrait hero-flip" id="heroPortrait" tabindex="0" role="button" aria-label="Flip portrait photo" aria-pressed="false">
         <div class="hero-flip-inner">
           <div class="hero-flip-face hero-flip-front"><img src="./assets/profile/profile-portrait.png" alt="Chakhriya Korada"></div>
           <div class="hero-flip-face hero-flip-back"><img src="./assets/mouse-tail/jojor8.jpg" alt="Chakhriya Korada, casual photo"></div>
         </div>
       </div>
+      <span class="first">Chakhriya</span>
       <span class="last">Korada</span>
     </div>
     <p class="hero-statement" id="heroStatement">
@@ -559,7 +564,7 @@ footer.site-footer{text-align:center; padding:var(--sp-7) var(--sp-5) var(--sp-8
   <div class="wrap">
     <p class="eyebrow reveal">Selected work</p>
     <h2 class="section-title reveal">My Latest Projects</h2>
-    <p class="lede reveal">Five projects spanning AI, computer vision, FinTech, mapping, and UX-led product design. Click any card for the full breakdown.</p>
+    <p class="lede reveal">Six projects spanning AI, computer vision, FinTech, mapping, system design, and UX-led product design. Click any card for the full breakdown.</p>
     <div class="project-grid" id="projectGrid"></div>
   </div>
 </section>
@@ -678,6 +683,19 @@ const softSkills = ["Communication","Collaboration","Adaptability","Problem Solv
 
 const projects = [
   {
+    image:"assets/profile/kplus-guardrail.png", bg:"linear-gradient(135deg,var(--cream-200),var(--sage-100))", coverFit:"contain", cat:"FinTech · Product Concept · Software Engineering",
+    name:"K PLUS Financial Decision Guardrail", desc:"A financial decision-support concept for First Jobbers that helps users understand when to proceed, pause, or verify before making important financial actions.", subtitle:"KBTG Kampus Hackathon 2026 · Track 1: Software Engineering & Quality", status:"Competition Concept", role:"Competition Concept", tools:"Decision Support, System Design", tags:["FinTech","Product Concept","Software Engineering","Decision Support","System Design"],
+    detailSections:[
+      {heading:"Problem", copy:"First Jobbers may already have access to financial tools and investment options, but they may still struggle to understand how a financial action could affect their current financial situation. The concept focuses on the decision moment before the user confirms an action."},
+      {heading:"Core Idea", copy:"The proposed decision-support layer is designed to help answer three questions:", list:["What can I do right now?","What should I do next?","When should I stop and check before confirming?"], after:"The goal is not to create another financial product. It is to help users understand their current financial readiness before taking action."},
+      {heading:"Solution", copy:"Designed for KBTG Kampus Hackathon 2026, the concept works across two moments:", list:["Prepare — helps users understand whether they are financially ready before moving money forward, considering cash flow, emergency fund, financial commitments, and available funds.","Protect — helps users know when to pause and verify before taking action, considering the impact on emergency savings, transaction anomalies, scam or fraud risk, and alignment with the user’s current financial situation."]},
+      {heading:"Decision Flow", copy:"The proposed guidance uses three states:", list:["Proceed — financial status looks ready and no major risk signals are detected.","Warn — the action may create financial impact, so the possible consequences are shown before the user continues.","Verify / Stop — a higher-risk condition is detected, so the transaction should pause for additional verification."]},
+      {heading:"System Concept", copy:"At concept level, the proposed flow includes existing financial data, financial-state analysis, a readiness check, risk signals, rule-based decision logic, and explainable guidance surfaced to the user. This is a proposed system architecture for the hackathon concept, not an implementation in K PLUS."},
+      {heading:"Quality Thinking", copy:"The hackathon concept also considered software-quality planning for logic testing, integration testing, resilience, production monitoring, and edge cases.", list:["Low emergency savings plus a small investment should not automatically be treated as low risk.","An account-name mismatch should not pass as safe.","Stale external risk data should not guarantee safety."]},
+      {heading:"Expected Impact", copy:"Potential impact for users includes better understanding before taking financial action, more confidence when making decisions, and clearer risk awareness. For K PLUS, the concept could support more responsible use of financial features, reduce exposure to risky transactions, and strengthen user trust through clearer guidance."}
+    ]
+  },
+  {
     image:"assets/projects/punto/punto-cover.jpg", bg:"linear-gradient(135deg,var(--sky-200),var(--sage-200))", cat:"System Analysis · UX/UI",
     name:"Punto", desc:"A proposed restaurant-management workflow based on field observation.", role:"System Analyst / Designer", tools:"Figma, UML, workflow analysis",
     gallery:["assets/projects/punto/punto-business-flow.png","assets/projects/punto/punto-business-usecase.png","assets/projects/punto/punto-detail-usecase.png","assets/projects/punto/punto-dev-process-flow.png"],
@@ -787,9 +805,8 @@ else{
 
 window.addEventListener('load', ()=>{
   const seq = [
-    ()=>document.getElementById('heroIntro').classList.add('in'),
-    ()=>document.getElementById('heroName').classList.add('in'),
     ()=>document.getElementById('heroPortrait').classList.add('in'),
+    ()=>document.getElementById('heroName').classList.add('in'),
     ()=>document.getElementById('heroStatement').classList.add('in'),
     ()=>document.getElementById('heroCta').classList.add('in'),
   ];
@@ -920,7 +937,7 @@ grid.innerHTML = projects.map((p,i)=>`
   <div class="project-card reveal" data-i="${i}" role="button" tabindex="0" aria-label="Open ${p.name} project details">
     <div class="project-cover" style="background:${p.bg}">
       <span class="num">0${i+1}</span>
-      <img class="cover-image" src="${p.image}" alt="${p.name} project cover">
+      <img class="cover-image${p.coverFit ? ` cover-image--${p.coverFit}` : ''}" src="${p.image}" alt="${p.name} project cover">
     </div>
     <div class="project-body">
       <h4>${p.name}</h4>
@@ -1017,6 +1034,7 @@ function wireProjectMedia(){
   });
 }
 function renderProjectStory(p){
+  if(p.detailSections) return p.detailSections.map(section=>`<div class="block"><h5>${section.heading}</h5>${section.copy ? `<p>${section.copy}</p>` : ''}${section.list ? `<ul>${section.list.map(item=>`<li>${item}</li>`).join('')}</ul>` : ''}${section.after ? `<p style="margin-top:10px">${section.after}</p>` : ''}</div>`).join('');
   if(!p.story) return `
     <div class="block"><h5>Overview</h5><p>${p.overview}</p></div>
     <div class="block"><h5>Problem</h5><p>${p.problem}</p></div>
@@ -1052,7 +1070,8 @@ function renderProjectLinks(p){
 function openProjectModal(p){
   modalContent.innerHTML = `
     <h3 id="modalTitle">${p.name}</h3>
-    <div class="meta"><span class="tag">${p.role}</span><span class="tag">${p.tools}</span>${p.year ? `<span class="tag">${p.cat} · ${p.year}</span>` : ''}${p.skillTags ? p.skillTags.map(tag=>`<span class="tag">${tag}</span>`).join('') : ''}</div>
+    ${p.subtitle ? `<p class="subtitle">${p.subtitle}</p>` : ''}
+    <div class="meta"><span class="tag">${p.status || p.role}</span><span class="tag">${p.tools}</span>${p.year ? `<span class="tag">${p.cat} · ${p.year}</span>` : ''}${p.tags ? p.tags.map(tag=>`<span class="tag">${tag}</span>`).join('') : ''}${p.skillTags ? p.skillTags.map(tag=>`<span class="tag">${tag}</span>`).join('') : ''}</div>
     ${renderProjectLinks(p)}
     ${renderProjectGallery(p)}
     ${p.video ? `<div class="block"><h5>Project video</h5><video controls preload="metadata" style="width:100%;border-radius:12px" src="${p.video}"></video></div>` : ''}
